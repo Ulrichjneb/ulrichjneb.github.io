@@ -1,0 +1,70 @@
+{
+  "_hinweis": "Vorlage. Beim ersten Start wird daraus automatisch config.json erzeugt. Nur config.json bearbeiten, danach den Server neu starten.",
+
+  "server": {
+    "port": 8080,
+    "adresse": "0.0.0.0"
+  },
+
+  "sicherheit": {
+    "zugangsschluessel": "WIRD-BEIM-ERSTEN-START-AUTOMATISCH-ERZEUGT",
+    "erlaubteNetze": [
+      "192.168.0.0/16",
+      "10.0.0.0/8",
+      "172.16.0.0/12",
+      "127.0.0.0/8",
+      "::1/128",
+      "fe80::/10",
+      "fc00::/7"
+    ],
+    "maxFehlversuche": 10,
+    "sperrzeitMinuten": 15
+  },
+
+  "testmodus": {
+    "aktiv": true,
+    "antwortzeitMs": 250,
+    "nichtErreichbar": ["dunstabzug"]
+  },
+
+  "shelly": {
+    "zeitlimitMs": 3000
+  },
+
+  "protokoll": {
+    "datei": "protokoll/aktionen.log",
+    "maxGroesseMB": 5
+  },
+
+  "oberflaeche": {
+    "titel": "Küche",
+    "aktualisierungSekunden": 10,
+    "farben": {
+      "hintergrund": "#f4f2ed",
+      "flaeche": "#fdfcfa",
+      "text": "#1d1c1a",
+      "textLeise": "#6b6963",
+      "rand": "#e2dfd6",
+      "an": "#e9a23b",
+      "anText": "#1d1c1a",
+      "aus": "#fdfcfa",
+      "fehler": "#c8423b",
+      "fehlerHintergrund": "#fbe9e7",
+      "akzent": "#2f6f5e"
+    },
+    "schriftgroessen": {
+      "basis": "20px",
+      "titel": "34px",
+      "knopfName": "26px",
+      "knopfStatus": "18px",
+      "uhr": "34px"
+    }
+  },
+
+  "geraete": [
+    { "id": "deckenlicht",  "name": "Deckenlicht",  "ip": "192.168.1.101", "generation": 2, "kanal": 0 },
+    { "id": "arbeitslicht", "name": "Arbeitslicht", "ip": "192.168.1.102", "generation": 2, "kanal": 0 },
+    { "id": "kaffeemaschine", "name": "Kaffeemaschine", "ip": "192.168.1.103", "generation": 1, "kanal": 0 },
+    { "id": "dunstabzug",   "name": "Dunstabzug",   "ip": "192.168.1.104", "generation": 2, "kanal": 0 }
+  ]
+}

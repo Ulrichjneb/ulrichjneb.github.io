@@ -1,0 +1,5 @@
+# Echte Konfiguration enthält den Zugangsschlüssel – niemals hochladen!
+konfiguration/config.json
+# Protokolldateien bleiben nur auf dem PC
+protokoll/
+node_modules/

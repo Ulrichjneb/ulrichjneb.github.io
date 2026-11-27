@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<title>Küche</title>
+<!-- Vollbild auf dem Startbildschirm (iPad/iPhone) -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Küche">
+<meta name="format-detection" content="telephone=no">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+<link rel="icon" type="image/png" href="/icons/icon-192.png">
+<link rel="stylesheet" href="/design.css">
+<link rel="stylesheet" href="/stil.css">
+<script src="/app.js" defer></script>
+</head>
+<body>
+  <header class="kopf">
+    <div class="kopf-links">
+      <h1 id="titel">Küche</h1>
+      <span id="testmodus" class="abzeichen" hidden>Testmodus</span>
+    </div>
+    <div class="kopf-rechts">
+      <div id="uhr" class="uhr" aria-live="off">--:--</div>
+      <div id="datum" class="datum"></div>
+    </div>
+  </header>
+
+  <main>
+    <div id="geraete" class="raster" aria-live="polite"></div>
+    <p id="leer" class="hinweis" hidden>Noch keine Geräte eingerichtet.<br>Geräte werden in der Konfiguration eingetragen.</p>
+    <p id="laden" class="hinweis">Verbinde …</p>
+  </main>
+
+  <!-- Fehlermeldung -->
+  <div id="meldung" class="meldung" role="alert" hidden>
+    <span class="meldung-symbol" aria-hidden="true">!</span>
+    <span id="meldung-text"></span>
+    <button id="meldung-zu" class="meldung-zu" aria-label="Meldung schließen">×</button>
+  </div>
+
+  <!-- Zugangsschlüssel eingeben (nur beim ersten Mal) -->
+  <div id="anmeldung" class="anmeldung" hidden>
+    <form id="anmeldung-form" class="anmeldung-karte" autocomplete="off">
+      <h2>Zugangsschlüssel</h2>
+      <p>Bitte einmal den Schlüssel eingeben. Er steht in der Datei <b>config.json</b> auf dem Küchen-PC
+         und wird beim ersten Start des Servers angezeigt.</p>
+      <input id="anmeldung-eingabe" type="password" inputmode="text" autocapitalize="off"
+             autocorrect="off" spellcheck="false" aria-label="Zugangsschlüssel" required>
+      <p id="anmeldung-fehler" class="anmeldung-fehler" hidden></p>
+      <button type="submit" class="knopf-gross">Speichern</button>
+    </form>
+  </div>
+</body>
+</html>
