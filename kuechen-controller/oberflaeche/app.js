@@ -11,7 +11,7 @@
   const $ = (id) => document.getElementById(id);
 
   const el = {
-    titel: $('titel'), testmodus: $('testmodus'), uhr: $('uhr'), datum: $('datum'),
+    titel: $('titel'), testmodus: $('testmodus'), zusammenfassung: $('zusammenfassung'), uhr: $('uhr'), datum: $('datum'),
     raster: $('geraete'), leer: $('leer'), laden: $('laden'),
     meldung: $('meldung'), meldungText: $('meldung-text'), meldungZu: $('meldung-zu'),
     anmeldung: $('anmeldung'), form: $('anmeldung-form'), eingabe: $('anmeldung-eingabe'),
@@ -110,10 +110,19 @@
     k.knopf.setAttribute('aria-label', `${g.name}: ${statusText(g)}`);
   }
 
+  // Ein-/Aus-Symbol (Linien, passt sich der Textfarbe an)
+  const SYMBOL = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" ' +
+    'stroke-linecap="round" aria-hidden="true"><path d="M12 3v8"/><path d="M6.3 6.8a8 8 0 1 0 11.4 0"/></svg>';
+
   function neueKachel(g) {
     const knopf = document.createElement('button');
     knopf.type = 'button';
     knopf.className = 'kachel';
+    const symbol = document.createElement('span');
+    symbol.className = 'symbol';
+    symbol.innerHTML = SYMBOL;
+    const text = document.createElement('span');
+    text.className = 'kachel-text';
     const name = document.createElement('span');
     name.className = 'kachel-name';
     const status = document.createElement('span');
@@ -122,7 +131,8 @@
     punkt.className = 'punkt';
     const statusText = document.createElement('span');
     status.append(punkt, statusText);
-    knopf.append(name, status);
+    text.append(name, status);
+    knopf.append(symbol, text);
     const k = { knopf, name, statusText, daten: g };
     knopf.addEventListener('click', () => schalte(k));
     return k;
@@ -138,6 +148,19 @@
       el.raster.appendChild(k.knopf); // hält die Reihenfolge der Konfiguration
     });
     el.leer.hidden = liste.length > 0;
+    zeigeZusammenfassung();
+  }
+
+  function zeigeZusammenfassung() {
+    const alle = [...kacheln.values()].map((k) => k.daten);
+    const an = alle.filter((g) => g.erreichbar && g.an).length;
+    const weg = alle.filter((g) => !g.erreichbar).length;
+    el.zusammenfassung.textContent = '';
+    if (!alle.length) return;
+    const b = document.createElement('b');
+    b.textContent = an === 0 ? 'Alles aus' : `${an} von ${alle.length} an`;
+    el.zusammenfassung.append(b);
+    if (weg) el.zusammenfassung.append(` · ${weg} nicht erreichbar`);
   }
 
   // ---------- Aktionen ----------
@@ -175,6 +198,7 @@
       k.knopf.classList.remove('wartet');
       if (ok) {
         zeichneKachel(k, daten);
+        zeigeZusammenfassung();
       } else {
         zeichneKachel(k, { ...g, erreichbar: daten.erreichbar ?? g.erreichbar, an: daten.an ?? g.an });
         zeigeMeldung(daten.fehler || `„${g.name}" konnte nicht geschaltet werden.`);

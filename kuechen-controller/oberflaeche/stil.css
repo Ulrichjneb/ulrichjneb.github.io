@@ -1,27 +1,38 @@
 /* Küchen-Controller – Gestaltung
  * Farben und Schriftgrößen kommen aus der Konfiguration (/design.css).
- * Hier steht nur das Layout. */
+ * Hier steht nur das Layout.
+ *
+ * Stil: dunkel, ruhig, modern – passend zu einer Küche in Schwarz/Weiß/Grau
+ * mit sehr dunklem Blau. Farbe nur als kleiner Akzent (Messington).
+ */
 
 * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+:root { color-scheme: dark; }
 
 html, body {
   height: 100%;
   background: var(--farbe-hintergrund);
   color: var(--farbe-text);
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", system-ui, sans-serif;
   font-size: var(--schrift-basis);
   overscroll-behavior: none;
   -webkit-user-select: none;
   user-select: none;
   -webkit-touch-callout: none;
   -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
 }
 
 body {
   display: flex;
   flex-direction: column;
-  padding: calc(env(safe-area-inset-top) + 24px) calc(env(safe-area-inset-right) + 28px)
-           calc(env(safe-area-inset-bottom) + 24px) calc(env(safe-area-inset-left) + 28px);
+  padding: calc(env(safe-area-inset-top) + 28px) calc(env(safe-area-inset-right) + 36px)
+           calc(env(safe-area-inset-bottom) + 28px) calc(env(safe-area-inset-left) + 36px);
+  /* ganz leichter Lichtschein oben – wirkt wertiger als eine flache Fläche */
+  background:
+    radial-gradient(120% 60% at 50% -10%, var(--farbe-flaecheHell) 0%, transparent 60%),
+    var(--farbe-hintergrund);
 }
 
 /* ---------- Kopfzeile ---------- */
@@ -30,31 +41,51 @@ body {
   justify-content: space-between;
   align-items: flex-end;
   gap: 16px;
-  padding-bottom: 20px;
-  margin-bottom: 24px;
-  border-bottom: 1px solid var(--farbe-rand);
+  margin-bottom: 32px;
 }
-.kopf-links { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
-h1 { font-size: var(--schrift-titel); font-weight: 650; letter-spacing: -0.01em; }
-.abzeichen {
-  font-size: 0.75em;
+.kopf-links { display: flex; flex-direction: column; gap: 8px; }
+.kopf-links .zeile { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+h1 {
+  font-size: var(--schrift-titel);
   font-weight: 600;
-  padding: 5px 12px;
+  letter-spacing: -0.02em;
+}
+.zusammenfassung { color: var(--farbe-textLeise); font-size: 0.85em; }
+.zusammenfassung b { color: var(--farbe-text); font-weight: 600; }
+
+.abzeichen {
+  font-size: 0.62em;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 5px 11px;
   border-radius: 999px;
-  background: var(--farbe-akzent);
-  color: #fff;
+  border: 1px solid var(--farbe-akzent);
+  color: var(--farbe-akzent);
 }
 .kopf-rechts { text-align: right; }
-.uhr { font-size: var(--schrift-uhr); font-weight: 600; font-variant-numeric: tabular-nums; line-height: 1.1; }
-.datum { color: var(--farbe-textLeise); font-size: 0.9em; margin-top: 2px; }
+.uhr {
+  font-size: var(--schrift-uhr);
+  font-weight: 200;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+.datum {
+  color: var(--farbe-textLeise);
+  font-size: 0.8em;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-top: 8px;
+}
 
 /* ---------- Geräte-Kacheln ---------- */
-main { flex: 1; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+main { flex: 1; overflow-y: auto; -webkit-overflow-scrolling: touch; padding-bottom: 8px; }
 
 .raster {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 18px;
 }
 
 .kachel {
@@ -63,52 +94,62 @@ main { flex: 1; overflow-y: auto; -webkit-overflow-scrolling: touch; }
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
-  min-height: 180px;
-  padding: 22px 24px;
-  border: 2px solid var(--farbe-rand);
-  border-radius: 24px;
-  background: var(--farbe-aus);
+  gap: 24px;
+  min-height: 176px;
+  padding: 22px;
+  border: 1px solid var(--farbe-rand);
+  border-radius: 26px;
+  background: linear-gradient(160deg, var(--farbe-flaecheHell), var(--farbe-aus) 70%);
   color: var(--farbe-text);
   font: inherit;
   text-align: left;
   cursor: pointer;
   touch-action: manipulation;
-  transition: background-color .25s ease, border-color .25s ease, transform .1s ease, box-shadow .25s ease;
+  transition: background .3s ease, color .3s ease, border-color .3s ease, transform .12s ease, box-shadow .3s ease;
 }
 .kachel:active { transform: scale(0.97); }
 
-.kachel-name { font-size: var(--schrift-knopfName); font-weight: 600; line-height: 1.2; }
+/* rundes Schalter-Symbol oben links */
+.symbol {
+  display: grid; place-items: center;
+  width: 52px; height: 52px; border-radius: 50%;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--farbe-rand);
+  color: var(--farbe-textLeise);
+  transition: inherit;
+}
+.symbol svg { width: 24px; height: 24px; }
+
+.kachel-text { display: flex; flex-direction: column; gap: 6px; }
+.kachel-name { font-size: var(--schrift-knopfName); font-weight: 600; letter-spacing: -0.01em; line-height: 1.2; }
 .kachel-status {
-  display: flex; align-items: center; gap: 10px;
+  display: flex; align-items: center; gap: 8px;
   font-size: var(--schrift-knopfStatus);
   color: var(--farbe-textLeise);
-  font-weight: 500;
 }
-.punkt {
-  width: 16px; height: 16px; border-radius: 50%;
-  border: 2px solid var(--farbe-textLeise);
-  flex: none;
-}
+.punkt { width: 8px; height: 8px; border-radius: 50%; background: var(--farbe-rand); flex: none; }
 
-/* An */
-.kachel.an { background: var(--farbe-an); border-color: var(--farbe-an); color: var(--farbe-anText);
-             box-shadow: 0 6px 24px -8px var(--farbe-an); }
-.kachel.an .kachel-status { color: var(--farbe-anText); }
-.kachel.an .punkt { background: var(--farbe-anText); border-color: var(--farbe-anText); }
+/* An: helle Kachel (wie weiße Fronten), Messing-Punkt als einziger Farbakzent */
+.kachel.an {
+  background: var(--farbe-an);
+  border-color: var(--farbe-an);
+  color: var(--farbe-anText);
+  box-shadow: 0 12px 40px -18px rgba(255,255,255,0.45);
+}
+.kachel.an .kachel-status { color: var(--farbe-anText); opacity: .7; }
+.kachel.an .punkt { background: var(--farbe-akzent); box-shadow: 0 0 0 4px color-mix(in srgb, var(--farbe-akzent) 25%, transparent); }
+.kachel.an .symbol { background: var(--farbe-anText); border-color: var(--farbe-anText); color: var(--farbe-akzent); }
 
 /* Nicht erreichbar */
-.kachel.fehler { background: var(--farbe-fehlerHintergrund); border-color: var(--farbe-fehler); border-style: dashed; }
+.kachel.fehler { background: var(--farbe-fehlerHintergrund); border-color: color-mix(in srgb, var(--farbe-fehler) 55%, transparent); }
 .kachel.fehler .kachel-status { color: var(--farbe-fehler); }
-.kachel.fehler .punkt { border-color: var(--farbe-fehler); background: transparent; position: relative; }
-.kachel.fehler .punkt::after {
-  content: ""; position: absolute; left: 50%; top: -3px; bottom: -3px; width: 2px;
-  background: var(--farbe-fehler); transform: translateX(-50%) rotate(45deg);
-}
+.kachel.fehler .punkt { background: var(--farbe-fehler); }
+.kachel.fehler .symbol { color: var(--farbe-fehler); border-color: color-mix(in srgb, var(--farbe-fehler) 40%, transparent); }
 
 /* Wird gerade geschaltet */
-.kachel.wartet { opacity: 0.65; pointer-events: none; }
-.kachel.wartet .punkt { border-style: dotted; animation: drehen 1s linear infinite; }
-@keyframes drehen { to { transform: rotate(360deg); } }
+.kachel.wartet { opacity: 0.6; pointer-events: none; }
+.kachel.wartet .punkt { animation: pulsieren 0.9s ease-in-out infinite; background: var(--farbe-akzent); }
+@keyframes pulsieren { 50% { opacity: .2; } }
 
 .hinweis {
   margin-top: 12vh;
@@ -126,26 +167,28 @@ main { flex: 1; overflow-y: auto; -webkit-overflow-scrolling: touch; }
   max-width: 820px;
   margin: 0 auto;
   display: flex; align-items: center; gap: 16px;
-  padding: 18px 20px;
-  border-radius: 18px;
-  background: var(--farbe-fehlerHintergrund);
-  border: 2px solid var(--farbe-fehler);
+  padding: 16px 18px 16px 20px;
+  border-radius: 20px;
+  background: color-mix(in srgb, var(--farbe-flaeche) 88%, transparent);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  border: 1px solid color-mix(in srgb, var(--farbe-fehler) 50%, transparent);
   color: var(--farbe-text);
-  box-shadow: 0 10px 30px -10px rgba(0,0,0,.25);
+  box-shadow: 0 20px 50px -20px rgba(0,0,0,.8);
   line-height: 1.35;
   animation: hoch .25s ease;
 }
 .meldung[hidden] { display: none; }
 @keyframes hoch { from { transform: translateY(20px); opacity: 0; } }
 .meldung-symbol {
-  flex: none; width: 36px; height: 36px; border-radius: 50%;
+  flex: none; width: 34px; height: 34px; border-radius: 50%;
   display: grid; place-items: center;
-  background: var(--farbe-fehler); color: #fff; font-weight: 700;
+  background: var(--farbe-fehler); color: var(--farbe-hintergrund); font-weight: 700;
 }
 #meldung-text { flex: 1; }
 .meldung-zu {
   flex: none; width: 52px; height: 52px; border: none; border-radius: 50%;
-  background: transparent; color: var(--farbe-text); font-size: 34px; line-height: 1; cursor: pointer;
+  background: rgba(255,255,255,0.06); color: var(--farbe-text); font-size: 30px; line-height: 1; cursor: pointer;
 }
 
 /* ---------- Anmeldung ---------- */
@@ -158,18 +201,19 @@ main { flex: 1; overflow-y: auto; -webkit-overflow-scrolling: touch; }
 .anmeldung[hidden] { display: none; }
 .anmeldung-karte {
   width: 100%; max-width: 520px;
-  padding: 32px;
-  border-radius: 24px;
+  padding: 36px;
+  border-radius: 28px;
   background: var(--farbe-flaeche);
   border: 1px solid var(--farbe-rand);
   display: flex; flex-direction: column; gap: 18px;
   -webkit-user-select: text; user-select: text;
 }
-.anmeldung-karte h2 { font-size: var(--schrift-titel); }
+.anmeldung-karte h2 { font-size: var(--schrift-titel); font-weight: 600; letter-spacing: -0.02em; }
 .anmeldung-karte p { color: var(--farbe-textLeise); line-height: 1.45; }
+.anmeldung-karte b { color: var(--farbe-text); }
 .anmeldung-karte input {
   font: inherit; font-size: 22px; padding: 16px 18px;
-  border-radius: 14px; border: 2px solid var(--farbe-rand);
+  border-radius: 14px; border: 1px solid var(--farbe-rand);
   background: var(--farbe-hintergrund); color: var(--farbe-text);
   -webkit-user-select: text; user-select: text;
 }
@@ -177,10 +221,11 @@ main { flex: 1; overflow-y: auto; -webkit-overflow-scrolling: touch; }
 .anmeldung-fehler { color: var(--farbe-fehler) !important; font-weight: 600; }
 .knopf-gross {
   font: inherit; font-weight: 600; padding: 18px; border: none; border-radius: 14px;
-  background: var(--farbe-akzent); color: #fff; cursor: pointer; touch-action: manipulation;
+  background: var(--farbe-an); color: var(--farbe-anText); cursor: pointer; touch-action: manipulation;
 }
 
 @media (max-width: 600px) {
-  .raster { grid-template-columns: 1fr 1fr; gap: 14px; }
-  .kachel { min-height: 140px; padding: 18px; }
+  .raster { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .kachel { min-height: 150px; padding: 18px; }
+  .uhr { font-size: 40px; }
 }

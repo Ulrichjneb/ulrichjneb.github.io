@@ -40,24 +40,25 @@
     "titel": "Küche",
     "aktualisierungSekunden": 10,
     "farben": {
-      "hintergrund": "#f4f2ed",
-      "flaeche": "#fdfcfa",
-      "text": "#1d1c1a",
-      "textLeise": "#6b6963",
-      "rand": "#e2dfd6",
-      "an": "#e9a23b",
-      "anText": "#1d1c1a",
-      "aus": "#fdfcfa",
-      "fehler": "#c8423b",
-      "fehlerHintergrund": "#fbe9e7",
-      "akzent": "#2f6f5e"
+      "hintergrund": "#0a0f18",
+      "flaeche": "#141b27",
+      "flaecheHell": "#1b2433",
+      "text": "#f3f4f6",
+      "textLeise": "#8b94a3",
+      "rand": "#243044",
+      "an": "#f5f6f8",
+      "anText": "#0a0f18",
+      "aus": "#141b27",
+      "akzent": "#d6a45c",
+      "fehler": "#e06a5f",
+      "fehlerHintergrund": "#241619"
     },
     "schriftgroessen": {
-      "basis": "20px",
-      "titel": "34px",
-      "knopfName": "26px",
-      "knopfStatus": "18px",
-      "uhr": "34px"
+      "basis": "19px",
+      "titel": "30px",
+      "knopfName": "24px",
+      "knopfStatus": "17px",
+      "uhr": "56px"
     }
   },
 

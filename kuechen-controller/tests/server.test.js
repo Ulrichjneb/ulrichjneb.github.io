@@ -203,8 +203,8 @@ test('Oberfläche: wird ausgeliefert, gepackt, mit Zwischenspeicher und Schutz-H
 
     // Design aus Konfiguration
     const css = await (await s.anfrage('/design.css', { schluessel: null })).text();
-    assert.match(css, /--farbe-an: #e9a23b;/);
-    assert.match(css, /--schrift-knopfName: 26px;/);
+    assert.match(css, /--farbe-hintergrund: #0a0f18;/);
+    assert.match(css, /--schrift-knopfName: 24px;/);
 
     const manifest = await (await s.anfrage('/manifest.webmanifest', { schluessel: null })).json();
     assert.equal(manifest.display, 'standalone');

@@ -76,9 +76,9 @@ Ein alter PC läuft dauerhaft als kleiner **Server** im Heimnetz. Ein **iPad** z
 
 | Aussehen | Bedeutung |
 |---|---|
-| 🟧 Orange gefüllt, „An" | Gerät ist eingeschaltet |
-| ⬜ Hell, „Aus" | Gerät ist ausgeschaltet |
-| 🟥 Rot gestrichelt, „Nicht erreichbar" | Gerät antwortet nicht. Unten erscheint eine Meldung mit Hinweis. |
+| ⬜ Weiße Kachel, Messing-Punkt, „An" | Gerät ist eingeschaltet |
+| ⬛ Dunkelblaue Kachel, „Aus" | Gerät ist ausgeschaltet |
+| 🟥 Rötlich, „Nicht erreichbar" | Gerät antwortet nicht. Unten erscheint eine Meldung mit Hinweis. |
 | Blass, „Schaltet …" | Befehl ist unterwegs |
 
 ## 4. Einstellungen ändern (config.json)
@@ -102,7 +102,7 @@ Nach jeder Änderung den **Server neu starten**.
 | `protokoll` | `datei` / `maxGroesseMB` | Wo das Protokoll liegt und wie groß es werden darf |
 | `oberflaeche` | `titel` | Überschrift, z. B. „Küche" |
 | | `aktualisierungSekunden` | Wie oft das iPad den Status neu abfragt |
-| | `farben` | Alle Farben als Farbcode (z. B. `"#e9a23b"`). `an` = Farbe eingeschalteter Kacheln. |
+| | `farben` | Alle Farben als Farbcode (z. B. `"#e9a23b"`). `an` = Farbe eingeschalteter Kacheln, `akzent` = der kleine Messington, `hintergrund` = das dunkle Blau. |
 | | `schriftgroessen` | Schriftgrößen (z. B. `"26px"`) |
 | `geraete` | Liste | Die Geräte (siehe unten) |
 

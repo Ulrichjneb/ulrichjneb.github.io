@@ -44,7 +44,7 @@ Hier steht in einfachen Worten, was in welchem Schritt gebaut wurde. Zum später
 
 **Fertig:** Eine ruhige, gut lesbare iPad-Seite mit großen Kacheln.
 
-- Eine Kachel pro Gerät mit Name und Status: **orange = an**, **hell = aus**, **rot gestrichelt = nicht erreichbar**.
+- Eine Kachel pro Gerät mit Name und Status: **weiß = an**, **dunkelblau = aus**, **rötlich = nicht erreichbar**.
 - Uhrzeit und Datum oben rechts.
 - Fehlermeldungen erscheinen unten als Hinweis, in Alltagssprache.
 - **Vollbild** über „Zum Home-Bildschirm" mit eigenem App-Symbol.
@@ -93,3 +93,15 @@ Hier steht in einfachen Worten, was in welchem Schritt gebaut wurde. Zum später
 - [ ] Autostart auf dem echten PC einrichten (Betriebssystem angeben)
 - [ ] Shellys mit Passwortschutz unterstützen (falls gewünscht)
 - [ ] Geführter Zugriff auf dem iPad
+
+---
+
+## Nachtrag – Design passend zur Küche 🎨
+
+**Fertig:** Die Oberfläche passt jetzt zur Küche (Schwarz, Weiß, Grau, sehr dunkles Blau wie der Boden).
+
+- Dunkler, fast schwarzer Hintergrund mit leichtem Blaustich.
+- „Aus" = dunkelblaue Kachel, „An" = weiße Kachel (wie helle Fronten).
+- Einziger Farbakzent: ein warmer **Messington** (Punkt, Schalter-Symbol, Testmodus-Abzeichen).
+- Moderne Details: große, schmale Uhr, Schalter-Symbol pro Kachel, Übersicht „2 von 4 an".
+- Alle Farben sind weiterhin in `config.json` änderbar.
